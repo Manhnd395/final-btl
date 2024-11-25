@@ -215,6 +215,16 @@
                   <String fx:value="button" />
                </styleClass>
             </Button>
+            <Button fx:id="openPersonalPage1" layoutX="15.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #8a5fbf;" stylesheets="@styleSheet.css" text="Quản lý " textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
          </children>
       </AnchorPane>
    </left>
@@ -230,7 +240,7 @@
                   </Label>
                   <ImageView fitHeight="307.0" fitWidth="200.0" layoutX="10.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../ảnh/i7.jpg" />
+                        <Image url="@../../Images/i7.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="217.0" layoutY="224.0" text="Thể loại : Sách giáo khoa" textFill="WHITE">
@@ -384,7 +394,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="personalPage" layoutX="1.0" layoutY="4.0" prefHeight="607.0" prefWidth="827.0" style="-fx-background-color: linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%);" styleClass="background" stylesheets="@styleSheet.css" visible="false">
+            <AnchorPane fx:id="personalPage" layoutX="1.0" layoutY="4.0" prefHeight="607.0" prefWidth="827.0" style="-fx-background-color: linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%);" styleClass="background" stylesheets="@styleSheet.css">
                <children>
                   <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="155.0" prefWidth="120.0" stylesheets="@styleSheet.css">
                      <styleClass>
@@ -666,6 +676,21 @@
                   <FontAwesomeIcon glyphName="SEARCH" layoutX="333.0" layoutY="78.0" />
                   <FontAwesomeIcon glyphName="SEARCH" layoutX="782.0" layoutY="35.0" />
                   <FontAwesomeIcon glyphName="SEARCH" layoutX="782.0" layoutY="79.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="1.0" layoutY="2.0" prefHeight="611.0" prefWidth="828.0">
+               <children>
+                  <TableView fx:id="manageUserTable" prefHeight="610.0" prefWidth="827.0">
+                    <columns>
+                        <TableColumn fx:id="col_MSV" prefWidth="110.66664123535156" text="Mã sinh viên" />
+                      <TableColumn fx:id="col_fullName" prefWidth="152.66668701171875" text="Họ tên" />
+                      <TableColumn fx:id="col_username" minWidth="0.0" prefWidth="125.33328247070312" text="Username" />
+                        <TableColumn fx:id="col_password" prefWidth="98.66668701171875" text="Password" />
+                        <TableColumn fx:id="col_email" prefWidth="153.33331298828125" text="Email" />
+                        <TableColumn fx:id="col_birthDate" prefWidth="109.3333740234375" text="Ngày sinh" />
+                        <TableColumn fx:id="col_gender" minWidth="0.0" prefWidth="72.66668701171875" text="Giới tính" />
+                    </columns>
+                  </TableView>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="borrowedBooks" layoutX="1.0" layoutY="3.0" prefHeight="610.0" prefWidth="823.0" visible="false">

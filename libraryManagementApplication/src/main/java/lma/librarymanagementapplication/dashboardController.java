@@ -1076,6 +1076,30 @@ public class dashboardController implements Initializable {
     @FXML
     private TableColumn<addBooksClass, String> col_returnDate;
 
+    @FXML
+    private TableView<userClass> manageUserTable;
+
+    @FXML
+    private TableColumn<userClass, String> col_MSV;
+
+    @FXML
+    private TableColumn<userClass, String> col_fullName;
+
+    @FXML
+    private TableColumn<userClass, String> col_username;
+
+    @FXML
+    private TableColumn<userClass, String> col_password;
+
+    @FXML
+    private TableColumn<userClass, String> col_email;
+
+    @FXML
+    private TableColumn<userClass, String> col_birthDate;
+
+    @FXML
+    private TableColumn<userClass, String> col_gender;
+
     ObservableList<addBooksClass> takenListBooks = FXCollections.observableArrayList();
 
     /**
@@ -1144,7 +1168,7 @@ public class dashboardController implements Initializable {
      */
     public void takeBook(ActionEvent event) throws SQLException {
 
-        if (currentUser == null || currentUser instanceof userClass) {
+        if (currentUser == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Yêu cầu đăng nhập");
             alert.setHeaderText(null);
@@ -1471,35 +1495,78 @@ public class dashboardController implements Initializable {
     }
 
     /**
+     * Thông tin người dùng thư viện (dành cho quản lý thư viện).
+     * @throws SQLException
+     */
+    public void showMangageUserTable() throws SQLException {
+        String sql = "SELECT MSV, fullname, username, password, email, birthdate, gender FROM users";
+
+        ObservableList<userClass> userList = FXCollections.observableArrayList();
+        connect = Database.connectDB();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            SimpleDateFormat displayDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+            while (result.next()) {
+                String msv = result.getString("MSV");
+                String fullname = result.getString("fullname");
+                String username = result.getString("username");
+                String password = result.getString("password");
+                String email = result.getString("email");
+                String birthdate = result.getString("birthdate");
+                String gender = result.getString("gender");
+
+                userClass user = new userClass(fullname, email, msv, username, password, birthdate, gender);
+                userList.add(user);
+            }
+
+            manageUserTable.setItems(userList);
+            col_MSV.setCellValueFactory(new PropertyValueFactory<>("MSV"));
+            col_fullName.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+            col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+            col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
+            col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+            col_birthDate.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
+            col_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (prepare != null) prepare.close();
+                if (connect != null) connect.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
      *  Xóa sách khỏi thư viện (admin).
      */
     public void deleteBookFromLibrary() {
-        if(currentUser instanceof staffClass) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Cảnh báo!");
+        String deleteQuery = "DELETE FROM books WHERE ID = ?";
+        addBooksClass selectedBook = addBooks_tableView.getSelectionModel().getSelectedItem();
+
+        try {
+            connect = Database.connectDB();
+            prepare = connect.prepareStatement(deleteQuery);
+            prepare.setInt(1, selectedBook.getID());
+            prepare.executeUpdate();
+            showAddBooks();
+            loadUserBooks();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Thông báo");
             alert.setHeaderText(null);
-            alert.setContentText("Bạn phải là quản trị viên để làm điều này!");
-        } else {
-            String deleteQuery = "DELETE FROM books WHERE ID = ?";
-            addBooksClass selectedBook = addBooks_tableView.getSelectionModel().getSelectedItem();
-
-            try {
-                connect = Database.connectDB();
-                prepare = connect.prepareStatement(deleteQuery);
-                prepare.setInt(1, selectedBook.getID());
-                prepare.executeUpdate();
-                showAddBooks();
-                loadUserBooks();
-
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText(null);
-                alert.setContentText("Xóa sách thành công");
-                alert.showAndWait();
-            } catch (SQLException e) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Database error", e);
-                throw new RuntimeException("Không thể xóa sách, thử lại!");
-            }
+            alert.setContentText("Xóa sách thành công");
+            alert.showAndWait();
+        } catch (SQLException e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Database error", e);
+            throw new RuntimeException("Không thể xóa sách, thử lại!");
         }
     }
 

@@ -22,6 +22,7 @@ module lma.librarymanagementapplication {
     requires annotations;
     requires com.zaxxer.hikari;
     requires jdk.sctp;
+    requires java.sql;
 
     opens lma.librarymanagementapplication to javafx.fxml;
     exports lma.librarymanagementapplication;
