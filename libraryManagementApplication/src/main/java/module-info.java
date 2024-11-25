@@ -21,6 +21,7 @@ module lma.librarymanagementapplication {
     requires org.junit.platform.commons;
     requires annotations;
     requires com.zaxxer.hikari;
+    requires jdk.sctp;
 
     opens lma.librarymanagementapplication to javafx.fxml;
     exports lma.librarymanagementapplication;

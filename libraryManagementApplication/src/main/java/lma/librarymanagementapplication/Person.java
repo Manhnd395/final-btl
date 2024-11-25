@@ -3,6 +3,7 @@ package lma.librarymanagementapplication;
 public abstract class Person {
     private String fullname;
     private String email;
+    private String MSV;
     private String username;
     private String password;
     private String birthdate;
@@ -10,7 +11,7 @@ public abstract class Person {
 
     public Person() {}
 
-    public Person(String fullname, String email, String username,
+    public Person(String fullname, String email, String MSV, String username,
                   String password, String birthdate, String gender) {
         this.fullname = fullname;
         this.email = email;
@@ -18,6 +19,15 @@ public abstract class Person {
         this.password = password;
         this.birthdate = birthdate;
         this.gender = gender;
+        this.MSV = MSV;
+    }
+
+    public String getMSV() {
+        return MSV;
+    }
+
+    public void setMSV(String MSV) {
+        this.MSV = MSV;
     }
 
     public String getGender() {

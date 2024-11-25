@@ -53,7 +53,7 @@ import java.util.logging.Logger;
 
 public class dashboardController implements Initializable {
 
-    private userClass currentUser;
+    private Person currentUser;
 
     @FXML
     private AnchorPane introPage;
@@ -551,7 +551,7 @@ public class dashboardController implements Initializable {
     @FXML
     private ChoiceBox<Integer> personal_year;
 
-    public void setCurrentUser(userClass user) {
+    public void setCurrentUser(Person user) {
         this.currentUser = user;
         initializePersonalInfo();
     }
@@ -675,7 +675,7 @@ public class dashboardController implements Initializable {
             if (rowsUpdated > 0) {
                 personal_message.setText("Cập nhật thành công");
 
-                userClass currentUser = personalInformationManager.getCurrentUser();
+                Person currentUser = personalInformationManager.getCurrentUser();
                 if (currentUser != null) {
                     currentUser.setFullname(fullname);
                     currentUser.setEmail(email);
@@ -684,7 +684,7 @@ public class dashboardController implements Initializable {
                     currentUser.setBirthdate(formattedBirthdate);
                     currentUser.setGender(gender);
 
-                    personalInformationManager.setCurrentUser(currentUser);
+                    personalInformationManager.setCurrentUser((userClass)currentUser);
                 }
 
             } else {
@@ -1144,7 +1144,7 @@ public class dashboardController implements Initializable {
      */
     public void takeBook(ActionEvent event) throws SQLException {
 
-        if (currentUser == null) {
+        if (currentUser == null || currentUser instanceof userClass) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Yêu cầu đăng nhập");
             alert.setHeaderText(null);
@@ -1474,25 +1474,32 @@ public class dashboardController implements Initializable {
      *  Xóa sách khỏi thư viện (admin).
      */
     public void deleteBookFromLibrary() {
-        String deleteQuery = "DELETE FROM books WHERE ID = ?";
-        addBooksClass selectedBook = addBooks_tableView.getSelectionModel().getSelectedItem();
-
-        try {
-            connect = Database.connectDB();
-            prepare = connect.prepareStatement(deleteQuery);
-            prepare.setInt(1, selectedBook.getID());
-            prepare.executeUpdate();
-            showAddBooks();
-            loadUserBooks();
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Thông báo");
+        if(currentUser instanceof staffClass) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Cảnh báo!");
             alert.setHeaderText(null);
-            alert.setContentText("Xóa sách thành công");
-            alert.showAndWait();
-        } catch (SQLException e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Database error", e);
-            throw new RuntimeException("Không thể xóa sách, thử lại!");
+            alert.setContentText("Bạn phải là quản trị viên để làm điều này!");
+        } else {
+            String deleteQuery = "DELETE FROM books WHERE ID = ?";
+            addBooksClass selectedBook = addBooks_tableView.getSelectionModel().getSelectedItem();
+
+            try {
+                connect = Database.connectDB();
+                prepare = connect.prepareStatement(deleteQuery);
+                prepare.setInt(1, selectedBook.getID());
+                prepare.executeUpdate();
+                showAddBooks();
+                loadUserBooks();
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Thông báo");
+                alert.setHeaderText(null);
+                alert.setContentText("Xóa sách thành công");
+                alert.showAndWait();
+            } catch (SQLException e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Database error", e);
+                throw new RuntimeException("Không thể xóa sách, thử lại!");
+            }
         }
     }
 
@@ -1569,34 +1576,42 @@ public class dashboardController implements Initializable {
      * Nút tìm kiếm.
      */
     public void searchBook_btn() {
+        if(currentUser instanceof staffClass) {
+            searchBook_btn.setOnMouseEntered(event -> link.setVisible(false));
+            searchBook_btn.setOnMouseClicked(event -> {
+                addBookPage.setVisible(true);
+                link.setVisible(false);
+                introPage.setVisible(false);
+                personalPage.setVisible(false);
+                addBooks.setVisible(false);
+                borrowedBooks.setVisible(false);
+                inventory.setVisible(false);
+                mainPage.setVisible(false);
+                suggestionsListView.setVisible(false);
+            });
 
-        searchBook_btn.setOnMouseEntered(event -> link.setVisible(false));
-        searchBook_btn.setOnMouseClicked(event -> {
-            addBookPage.setVisible(true);
-            link.setVisible(false);
-            introPage.setVisible(false);
-            personalPage.setVisible(false);
-            addBooks.setVisible(false);
-            borrowedBooks.setVisible(false);
-            inventory.setVisible(false);
-            mainPage.setVisible(false);
-            suggestionsListView.setVisible(false);
-        });
+            addBookPage.setStyle("-fx-background-color:white");
+            mainPage.setStyle("-fx-background-color:transparent");
+            personalPage.setStyle("-fx-background-color:transparent");
+            borrowedBooks.setStyle("-fx-background-color:transparent");
+            addBooks.setStyle("-fx-background-color:transparent");
+            inventory.setStyle("-fx-background-color:transparent");
+            introPage.setStyle("-fx-background-color:transparent");
 
-        addBookPage.setStyle("-fx-background-color:white");
-        mainPage.setStyle("-fx-background-color:transparent");
-        personalPage.setStyle("-fx-background-color:transparent");
-        borrowedBooks.setStyle("-fx-background-color:transparent");
-        addBooks.setStyle("-fx-background-color:transparent");
-        inventory.setStyle("-fx-background-color:transparent");
-        introPage.setStyle("-fx-background-color:transparent");
-
-        // Ẩn danh sách đề xuất khi trống.
-        String searchText = searchField.getText();
-        if (searchText.isEmpty()) {
-            suggestionsListView.setVisible(false);
+            // Ẩn danh sách đề xuất khi trống.
+            String searchText = searchField.getText();
+            if (searchText.isEmpty()) {
+                suggestionsListView.setVisible(false);
+            }
+            searchBook(searchText);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Cảnh báo!");
+            alert.setHeaderText(null);
+            alert.setContentText("Bạn cần phải là quản trị viên để truy cập chức năng này!");
+            alert.showAndWait();
         }
-        searchBook(searchText);
+
     }
 
     private final ExecutorService executor = Executors.newFixedThreadPool(3);
@@ -1606,22 +1621,29 @@ public class dashboardController implements Initializable {
      * @param search
      */
     public void searchBook(String search) {
+        if(currentUser instanceof staffClass) {
+            executor.submit(() -> {
+                try {
+                    // Gọi API Google Books và xử lý kết quả trong luồng nền
+                    String result = GoogleBookAPI.searchBook(search);
+                    JsonObject json = JsonParser.parseString(result).getAsJsonObject();
+                    JsonArray items = json.getAsJsonArray("items");
 
-        executor.submit(() -> {
-            try {
-                // Gọi API Google Books và xử lý kết quả trong luồng nền
-                String result = GoogleBookAPI.searchBook(search);
-                JsonObject json = JsonParser.parseString(result).getAsJsonObject();
-                JsonArray items = json.getAsJsonArray("items");
+                    Platform.runLater(() -> displayBooks(items));
 
-                Platform.runLater(() -> displayBooks(items));
-
-            } catch (Exception e) {
-                Platform.runLater(() -> {
-                    e.printStackTrace();
-                });
-            }
-        });
+                } catch (Exception e) {
+                    Platform.runLater(() -> {
+                        e.printStackTrace();
+                    });
+                }
+            });
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Cảnh báo!");
+            alert.setHeaderText(null);
+            alert.setContentText("Bạn cần là quản trị viên để làm điều này");
+            alert.showAndWait();
+        }
     }
 
 

@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="apiguardian-api-1.1.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../btl/maven/apiguardian-api-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../btl/maven/error_prone_annotations-2.27.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../btl/maven/fontawesomefx-8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../btl/maven/gson-2.11.0.jar!/" />
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../btl/maven/mysql-connector-j-8.0.31-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/libraryManagementApplication/src/main/java" />
+    </SOURCES>
+  </library>
+</component>

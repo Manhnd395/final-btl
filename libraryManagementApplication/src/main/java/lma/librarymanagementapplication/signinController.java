@@ -16,6 +16,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -51,7 +54,7 @@ public class signinController implements Initializable {
      * Đăng nhập thư viện.
      */
 
-    public String login() throws IOException, SQLException {
+    public String login() throws IOException {
         String fullname = null;
         connect = Database.connectDB();
         String verifyLogin = "SELECT * FROM users WHERE username = ? AND password = ?";
@@ -66,27 +69,74 @@ public class signinController implements Initializable {
             Alert alert;
 
             if (username.getText().isEmpty() || password.getText().isEmpty()) {
+                alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Cảnh báo");
+                alert.setHeaderText(null);
+                alert.setContentText("Không được để trống tên đăng nhập");
+                alert.showAndWait();
                 return null;
+            } else if (username.getText().contains(" ")|| password.getText().contains(" ")) {
+                alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Cảnh báo");
+                alert.setHeaderText(null);
+                alert.setContentText("Tên đăng nhập và mật khẩu không được có khoảng trắng!");
             } else {
                 if (result.next()) {
+                    String inputPersonname = result.getString("username");
+                    boolean isStaff = false;
+                    try (BufferedReader reader = new BufferedReader(new FileReader("Manager.txt"))) {
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            String[] parts = line.split(" ");
+                            String fileUsername = parts[0];
+                            String filePassword = parts[1];
+                            if(fileUsername.equals(username.getText()) && filePassword.equals(password.getText())) {
+                                isStaff = true;
+                                break;
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Person loggedInUser;
+                    if (isStaff) {
+                        loggedInUser = new staffClass(
+                                result.getString("fullname"),
+                                result.getString("email"),
+                                result.getString("MSV"),
+                                result.getString("username"),
+                                result.getString("password"),
+                                result.getString("birthdate"),
+                                result.getString("gender")
+                        );
 
-                    userClass loggedInUser = new userClass(
-                            result.getString("fullname"),
-                            result.getString("email"),
-                            result.getString("MSV"),
-                            result.getString("username"),
-                            result.getString("password"),
-                            result.getString("birthdate"),
-                            result.getString("gender")
-                    );
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Đăng nhập");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Đăng nhập thành công (Staff)");
+                        alert.showAndWait();
 
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Đăng nhập");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Đăng nhập thành công");
-                    alert.showAndWait();
+                        login.getScene().getWindow().hide();
+                    } else {
+                        loggedInUser = new userClass(
+                                result.getString("fullname"),
+                                result.getString("email"),
+                                result.getString("MSV"),
+                                result.getString("username"),
+                                result.getString("password"),
+                                result.getString("birthdate"),
+                                result.getString("gender")
+                        );
 
-                    login.getScene().getWindow().hide();
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Đăng nhập");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Đăng nhập thành công (User)");
+                        alert.showAndWait();
+
+                        login.getScene().getWindow().hide();
+                    }
+
 
                     FXMLLoader fxmlLoader = new FXMLLoader(libraryMA.class.getResource("dashboardoutside.fxml"));
 
@@ -110,7 +160,7 @@ public class signinController implements Initializable {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
-                    alert.setContentText("Sai tên đăng nhập hoặc mật khẩu!");
+                    alert.setContentText("Sai tên đăng nhập hoặc mật khẩu");
                     alert.showAndWait();
                 }
             }
