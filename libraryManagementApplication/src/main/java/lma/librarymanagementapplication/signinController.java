@@ -56,10 +56,11 @@ public class signinController implements Initializable {
 
     public String login() throws IOException {
         String fullname = null;
-        connect = Database.connectDB();
+
         String verifyLogin = "SELECT * FROM users WHERE username = ? AND password = ?";
 
         try {
+            connect = Database.connectDB();
             prepare = connect.prepareStatement(verifyLogin);
             prepare.setString(1, username.getText());
             prepare.setString(2, password.getText());
@@ -84,7 +85,7 @@ public class signinController implements Initializable {
                 if (result.next()) {
                     String inputPersonname = result.getString("username");
                     boolean isStaff = false;
-                    try (BufferedReader reader = new BufferedReader(new FileReader("Manager.txt"))) {
+                    try (BufferedReader reader = new BufferedReader(new FileReader("D:/Khai/API/libraryManagementApplication/src/main/java/lma/librarymanagementapplication/Manager.txt"))) {
                         String line;
                         while ((line = reader.readLine()) != null) {
                             String[] parts = line.split(" ");

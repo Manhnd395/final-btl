@@ -230,7 +230,7 @@
                   </Label>
                   <ImageView fitHeight="307.0" fitWidth="200.0" layoutX="10.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../ảnh/i7.jpg" />
+                        <Image url="@../../Images/i7.jpg" />
                      </image>
                   </ImageView>
                   <Label layoutX="217.0" layoutY="224.0" text="Thể loại : Sách giáo khoa" textFill="WHITE">
