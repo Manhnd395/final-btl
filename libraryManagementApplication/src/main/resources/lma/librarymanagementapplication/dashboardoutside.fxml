@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="1006.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lma.librarymanagementapplication.dashboardController">
+   <top>
+      <AnchorPane prefHeight="60.0" prefWidth="1003.0" style="-fx-background-color: lightpink;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="mainPage_btn" layoutX="182.0" mnemonicParsing="false" onAction="#mainPage_btn" onDragEntered="#mainPage_btn" prefHeight="60.0" prefWidth="67.0" stylesheets="@styleSheet.css" text="Trang chủ">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="documents_btn" layoutX="265.0" mnemonicParsing="false" onAction="#documents_btn" prefHeight="60.0" prefWidth="48.0" stylesheets="@styleSheet.css" text="Tài liệu">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="intro_btn" layoutX="329.0" mnemonicParsing="false" onAction="#intro_btn" prefHeight="60.0" prefWidth="64.0" stylesheets="@styleSheet.css" text="Giới thiệu">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="link_btn" layoutX="410.0" mnemonicParsing="false" onAction="#link_btn" prefHeight="60.0" prefWidth="110.0" stylesheets="@styleSheet.css" text="Liên kết Website">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="signindashboard" layoutX="764.0" layoutY="14.0" mnemonicParsing="false" onAction="#signindashboard" prefHeight="32.0" prefWidth="125.0" style="-fx-background-color: blue;" stylesheets="@styleSheet.css" text=" Đăng nhập" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+               </styleClass>
+               <graphic>
+                  <FontAwesomeIcon fill="WHITE" glyphName="SIGN_IN" size="1.4em" />
+               </graphic>
+            </Button>
+            <TextField fx:id="searchField" layoutX="535.0" layoutY="13.0" prefHeight="34.0" prefWidth="216.0" promptText="Tìm kiếm" stylesheets="@styleSheet.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="card-form" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+            <FontAwesomeIcon fill="#ff922c" glyphName="BOOK" layoutX="14.0" layoutY="51.0" size="4.5em" text="" />
+            <Label layoutX="73.0" layoutY="12.0" text="Thư viện điện tử">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="27.0" text="The IPS">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <FontAwesomeIcon glyphName="SEARCH" layoutX="724.0" layoutY="37.0" size="1.4em">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </FontAwesomeIcon>
+            <Button fx:id="closedb" layoutX="964.0" layoutY="11.0" mnemonicParsing="false" onAction="#closedb" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <FontAwesomeIcon fill="RED" glyphName="CLOSE" size="2em" text="" />
+               </graphic>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="hidedb" layoutX="888.0" layoutY="13.0" mnemonicParsing="false" onAction="#hidedb" prefHeight="33.0" prefWidth="49.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <FontAwesomeIcon fill="#508cc0" glyphName="MINUS" size="2em" />
+               </graphic>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="fulldb" layoutX="933.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0" style="-fx-background-color: transparent;">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIcon fill="#78ecc7" glyphName="SQUARE" size="1.55em" wrappingWidth="20.446735382080078" />
+               </graphic>
+            </Button>
+            <Label fx:id="user" alignment="CENTER" layoutX="763.0" layoutY="21.0" prefHeight="22.0" prefWidth="127.0" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="searchBook_btn" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#searchBook_btn" prefHeight="23.0" prefWidth="24.0" style="-fx-background-color: transparent;" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="607.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(to bottom right, #2d658c, #2ca772);" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="50.0" layoutY="18.0" text="Quản lý thư viện">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <FontAwesomeIcon glyphName="BARS" layoutX="14.0" layoutY="42.0" size="2.5em" />
+            <Button fx:id="openAddBooks" layoutX="15.0" layoutY="67.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #8a5fbf;" stylesheets="@styleSheet.css" text="Thư viện chính" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="openNewBooks" layoutX="15.0" layoutY="123.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #8a5fbf;" stylesheets="@styleSheet.css" text="Sách mới" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="openBorrowedBooks" layoutX="15.0" layoutY="234.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #8a5fbf;" stylesheets="@styleSheet.css" text="Sách đã mượn" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="openPersonalPage" layoutX="15.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #8a5fbf;" stylesheets="@styleSheet.css" text="Trang cá nhân" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="signoutdashboard" layoutX="58.0" layoutY="549.0" mnemonicParsing="false" onAction="#signoutdashboard" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: red;" stylesheets="@styleSheet.css" text="Đăng xuất" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+               </styleClass>
+            </Button>
+            <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" layoutX="13.0" layoutY="582.0" selectionFill="#f8f8f8" size="3em" />
+            <FontAwesomeIcon glyphName="LEANPUB" layoutX="20.0" layoutY="504.0" size="10em">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5299999713897705" green="0.37031978368759155" blue="0.17489999532699585" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </FontAwesomeIcon>
+            <Button fx:id="openInventory" layoutX="15.0" layoutY="178.0" mnemonicParsing="false" onAction="#switchPage" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #8a5fbf;" stylesheets="@styleSheet.css" text="Tủ sách cá nhân" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="gameStart" layoutX="15.0" layoutY="346.0" mnemonicParsing="false" onAction="#gameStart" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #8a5fbf;" stylesheets="@styleSheet.css" text="Trò chơi" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="436.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="mainPage" layoutY="4.0" prefHeight="607.0" prefWidth="828.0" style="-fx-background-color: linear-gradient(to bottom right, #344250, #3c6382);" visible="false">
+               <children>
+                  <Label layoutX="10.0" layoutY="10.0" text="Tài liệu nổi bật" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="307.0" fitWidth="200.0" layoutX="10.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../ảnh/i7.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="217.0" layoutY="224.0" text="Thể loại : Sách giáo khoa" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="242.0" layoutY="258.0" mnemonicParsing="false" style="-fx-background-color: #f8bb42;" stylesheets="@styleSheet.css" text=" Xem đầy đủ" textFill="WHITE">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="EYE" size="1.5em" />
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </Button>
+                  <HBox layoutY="491.0" prefHeight="112.0" prefWidth="825.0">
+                     <children>
+                        <AnchorPane prefHeight="113.0" prefWidth="826.0" style="-fx-background-color: lightblue;" styleClass="side_ankerpane" stylesheets="@styleSheet.css">
+                           <children>
+                              <Label layoutX="22.0" layoutY="39.0" text="Danh mục tài liệu">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="novel" layoutX="201.0" layoutY="16.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="&#10;&#10;Tiểu thuyết&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="comic" layoutX="316.0" layoutY="15.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="109.0" style="-fx-background-color: transparent;" text="&#10;&#10;Truyện tranh&#10;&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIcon fill="#ffe100" glyphName="CHILD" layoutX="361.0" layoutY="54.0" size="3em" text="">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </FontAwesomeIcon>
+                              <Button fx:id="video" layoutX="445.0" layoutY="20.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="&#10;&#10;Video&#10;&#10;&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIcon fill="RED" glyphName="PLAY" layoutX="479.0" layoutY="56.0" size="3em">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </FontAwesomeIcon>
+                              <Button fx:id="dictionary" layoutX="558.0" layoutY="15.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="&#10;&#10;Từ điển&#10;&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIcon fill="#56acde" glyphName="GLOBE" layoutX="591.0" layoutY="56.0" size="3em" text="">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </FontAwesomeIcon>
+                              <Button fx:id="textbook" layoutX="659.0" layoutY="18.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="136.0" style="-fx-background-color: transparent;" text="&#10;&#10;Sách giáo khoa&#10;&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIcon glyphName="UNIVERSITY" layoutX="707.0" layoutY="56.0" size="3em">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon fill="#cf5f99" glyphName="BOOKMARK" layoutX="238.0" layoutY="57.0" size="3em" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="documents" layoutX="-180.0" layoutY="1.0" prefHeight="113.0" prefWidth="601.0" visible="false">
+                     <children>
+                        <AnchorPane prefHeight="113.0" prefWidth="618.0" style="-fx-background-color: lightblue;" styleClass="side_ankerpane" stylesheets="@styleSheet.css">
+                           <children>
+                              <Button fx:id="novel2" layoutX="7.0" layoutY="17.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="&#10;&#10;Tiểu thuyết&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="comic2" layoutX="122.0" layoutY="16.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="109.0" style="-fx-background-color: transparent;" text="&#10;&#10;Truyện tranh&#10;&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIcon fill="#ffe100" glyphName="CHILD" layoutX="167.0" layoutY="55.0" size="3em" text="">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </FontAwesomeIcon>
+                              <Button fx:id="video2" layoutX="251.0" layoutY="21.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="&#10;&#10;Video&#10;&#10;&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIcon fill="RED" glyphName="PLAY" layoutX="285.0" layoutY="56.0" size="3em">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </FontAwesomeIcon>
+                              <Button fx:id="dictionary2" layoutX="364.0" layoutY="16.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="&#10;&#10;Từ điển&#10;&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIcon fill="#56acde" glyphName="GLOBE" layoutX="397.0" layoutY="57.0" size="3em" text="">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </FontAwesomeIcon>
+                              <Button fx:id="textbook2" layoutX="465.0" layoutY="19.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="136.0" style="-fx-background-color: transparent;" text="&#10;&#10;Sách giáo khoa&#10;&#10;&#10;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                              <FontAwesomeIcon glyphName="UNIVERSITY" layoutX="513.0" layoutY="57.0" size="3em">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </FontAwesomeIcon>
+                              <FontAwesomeIcon fill="#cf5f99" glyphName="BOOKMARK" layoutX="45.0" layoutY="58.0" size="3em" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="link" layoutX="190.0" prefHeight="31.0" prefWidth="202.0" visible="false">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="side_ankerpane" stylesheets="@styleSheet.css">
+                           <children>
+                              <FontAwesomeIcon fill="#00bd03" glyphName="LINK" layoutX="16.0" layoutY="21.0" rotate="89.2" size="1.2em" />
+                              <Button fx:id="openLink" layoutX="35.0" layoutY="2.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0" style="-fx-background-color: transparent;" stylesheets="@styleSheet.css" text="Trường Đại học Công nghệ" textFill="#0e8350" underline="true">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="426.0" layoutY="10.0" prefHeight="472.0" prefWidth="403.0" styleClass="side_ankerpane">
+                     <children>
+                        <ListView fx:id="newBooks" prefHeight="473.0" prefWidth="415.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="personalPage" layoutX="1.0" layoutY="4.0" prefHeight="607.0" prefWidth="827.0" style="-fx-background-color: linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%);" styleClass="background" stylesheets="@styleSheet.css" visible="false">
+               <children>
+                  <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="155.0" prefWidth="120.0" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <children>
+                        <ImageView fx:id="personal_imageView" fitHeight="155.0" fitWidth="118.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="personal_imageInsert" layoutX="36.0" layoutY="188.0" mnemonicParsing="false" style="-fx-background-color: yellow;" stylesheets="@styleSheet.css" text="Thêm ảnh">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="172.0" layoutY="242.0" text="Họ và tên">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="169.0" layoutY="327.0" text="Mã sinh viên">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="170.0" layoutY="286.0" text="Email">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="168.0" layoutY="409.0" text="Mật khẩu">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="169.0" layoutY="451.0" text="Ngày sinh">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="personal_male" layoutX="265.0" layoutY="492.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="58.0" stylesheets="@styleSheet.css" text="Nam" />
+                  <ChoiceBox fx:id="personal_date" layoutX="264.0" layoutY="450.0" prefHeight="26.0" prefWidth="91.0" stylesheets="@styleSheet.css">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </ChoiceBox>
+                  <ChoiceBox fx:id="personal_month" layoutX="387.0" layoutY="450.0" prefHeight="26.0" prefWidth="91.0" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </ChoiceBox>
+                  <ChoiceBox fx:id="personal_year" layoutX="509.0" layoutY="450.0" prefHeight="26.0" prefWidth="91.0" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </ChoiceBox>
+                  <CheckBox fx:id="personal_female" layoutX="327.0" layoutY="492.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="64.0" stylesheets="@styleSheet.css" text="Nữ" />
+                  <TextField fx:id="personal_MSV" accessibleRole="PASSWORD_FIELD" layoutX="265.0" layoutY="324.0" prefHeight="26.0" prefWidth="335.0" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="personal_email" accessibleRole="PASSWORD_FIELD" layoutX="265.0" layoutY="283.0" prefHeight="26.0" prefWidth="335.0" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="personal_fullname" accessibleRole="PASSWORD_FIELD" layoutX="266.0" layoutY="238.0" prefHeight="31.0" prefWidth="332.0" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="personal_update" layoutX="395.0" layoutY="537.0" mnemonicParsing="false" onAction="#initializePersonalInfo" style="-fx-background-color: #0011ff;" stylesheets="@styleSheet.css" text="Cập nhật" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="169.0" layoutY="490.0" text="Giới tính">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIcon fill="#ecbc79f2" glyphName="COFFEE" layoutX="357.0" layoutY="181.0" size="12em" />
+                  <Label fx:id="personal_message" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="572.0" prefHeight="24.0" prefWidth="419.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="personal_password" layoutX="264.0" layoutY="407.0" prefHeight="26.0" prefWidth="336.0" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </PasswordField>
+                  <Label layoutX="168.0" layoutY="370.0" text="Tài khoản">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="personal_username" accessibleRole="PASSWORD_FIELD" layoutX="265.0" layoutY="366.0" prefHeight="26.0" prefWidth="335.0" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="addBooks" layoutY="4.0" prefHeight="605.0" prefWidth="828.0" style="-fx-background-color: lightblue;" styleClass="card-form">
+               <children>
+                  <AnchorPane fx:id="addBooks_form" layoutX="300.0" layoutY="102.0" prefHeight="493.0" prefWidth="504.0" style="-fx-background-color: #ecba46;" stylesheets="@styleSheet.css">
+                     <children>
+                        <TableView fx:id="addBooks_tableView" layoutX="10.0" layoutY="27.0" onMouseClicked="#selectShowBooks" prefHeight="439.0" prefWidth="483.0">
+                          <columns>
+                            <TableColumn fx:id="col_title" prefWidth="150.10910034179688" text="Tiêu đề" />
+                            <TableColumn fx:id="col_author" prefWidth="135.27267456054688" text="Tác giả" />
+                              <TableColumn fx:id="col_publishedDate" minWidth="0.0" prefWidth="125.6727294921875" text="Ngày xuất bản" />
+                              <TableColumn fx:id="col_ID" minWidth="0.0" prefWidth="74.1817626953125" text="Mã sách" />
+                              <TableColumn fx:id="col_previewLink" minWidth="0.0" prefWidth="0.0" />
+                              <TableColumn fx:id="col_comment" minWidth="0.0" prefWidth="0.0" />
+                          </columns>
+                        </TableView>
+                     </children>
+                     <styleClass>
+                        <String fx:value="card-form" />
+                        <String fx:value="shadow" />
+                     </styleClass></AnchorPane>
+                  <AnchorPane fx:id="dataList" layoutX="14.0" layoutY="102.0" prefHeight="491.0" prefWidth="243.0" style="-fx-background-color: #bdbb88;" stylesheets="@styleSheet.css">
+                     <children>
+                        <Label layoutX="91.0" layoutY="308.0" text="Tiêu đề">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="deleteBooks" layoutX="22.0" layoutY="360.0" mnemonicParsing="false" onAction="#deleteBookFromLibrary" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: blue;" stylesheets="@styleSheet.css" text="Xóa" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="white-bg" />
+                              <String fx:value="button" />
+                              <String fx:value="shadow" />
+                           </styleClass></Button>
+                        <Button fx:id="takeBook" layoutX="149.0" layoutY="360.0" mnemonicParsing="false" onAction="#takeBook" prefHeight="31.0" prefWidth="70.0" style="-fx-background-color: blue;" stylesheets="@styleSheet.css" text="Lấy" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="white-bg" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                        <ImageView fx:id="addBooks_image" fitHeight="202.0" fitWidth="170.0" layoutX="35.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="card-form" />
+                           </styleClass></ImageView>
+                        <Label fx:id="book_title" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="259.0" prefHeight="24.0" prefWidth="237.0" text="                         " textAlignment="CENTER">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="card-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </AnchorPane>
+                  <Separator layoutX="270.0" layoutY="102.0" orientation="VERTICAL" prefHeight="490.0" prefWidth="18.0" />
+                  <TextField fx:id="searchTitle" layoutX="78.0" layoutY="14.0" prefHeight="34.0" prefWidth="216.0" promptText="Tìm kiếm" stylesheets="@styleSheet.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="card-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="searchPublishedDate" layoutX="530.0" layoutY="14.0" prefHeight="34.0" prefWidth="216.0" promptText="Tìm kiếm" stylesheets="@styleSheet.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="card-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="searchAuthor" layoutX="78.0" layoutY="56.0" prefHeight="34.0" prefWidth="216.0" promptText="Tìm kiếm" stylesheets="@styleSheet.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="card-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </TextField>
+                  <TextField fx:id="searchID" layoutX="530.0" layoutY="57.0" prefHeight="34.0" prefWidth="216.0" promptText="Tìm kiếm" stylesheets="@styleSheet.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="card-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </TextField>
+                  <Label layoutX="18.0" layoutY="21.0" text="Tiêu đề">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="63.0" text="Tác giả">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="421.0" layoutY="20.0" text="Ngày xuất bản">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="421.0" layoutY="63.0" text="Mã sách">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="searchTitle_btn" layoutX="314.0" layoutY="17.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #34c6c1;" stylesheets="@styleSheet.css" textFill="#34c6c1">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </Button>
+                  <FontAwesomeIcon glyphName="SEARCH" layoutX="334.0" layoutY="34.0" />
+                  <Button fx:id="searchAuthor_btn" layoutX="314.0" layoutY="61.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #34c6c1;" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="searchPublishedDate_btn" layoutX="762.0" layoutY="18.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #34c6c1;" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="searchID_btn" layoutX="762.0" layoutY="62.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #34c6c1;" stylesheets="@styleSheet.css">
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </Button>
+                  <FontAwesomeIcon glyphName="SEARCH" layoutX="333.0" layoutY="78.0" />
+                  <FontAwesomeIcon glyphName="SEARCH" layoutX="782.0" layoutY="35.0" />
+                  <FontAwesomeIcon glyphName="SEARCH" layoutX="782.0" layoutY="79.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="borrowedBooks" layoutX="1.0" layoutY="3.0" prefHeight="610.0" prefWidth="823.0" visible="false">
+               <children>
+                  <TableView fx:id="addBooks_tableView2" layoutX="1.0" prefHeight="607.0" prefWidth="826.0">
+                    <columns>
+                      <TableColumn fx:id="col_title2" prefWidth="178.03638792037964" text="Tiêu đề" />
+                      <TableColumn fx:id="col_author2" prefWidth="185.01817321777344" text="Tác giả" />
+                        <TableColumn fx:id="col_publishedDate2" prefWidth="136.1453857421875" text="Ngày xuất bản" />
+                        <TableColumn fx:id="col_borrowDate" prefWidth="130.90914916992188" text="Ngày mượn" />
+                        <TableColumn fx:id="col_returnDate" prefWidth="116.945556640625" text="Ngày trả" />
+                        <TableColumn fx:id="col_ID2" minWidth="0.872802734375" prefWidth="79.418212890625" text="Mã sách" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+            <AnchorPane fx:id="inventory" layoutX="3.0" layoutY="4.0" prefHeight="608.0" prefWidth="813.0" visible="false">
+               <children>
+                  <TableView fx:id="addBooks_tableView1" layoutY="281.0" onMouseClicked="#selectShowBooks" prefHeight="322.0" prefWidth="825.0">
+                     <columns>
+                        <TableColumn fx:id="col_title1" prefWidth="259.2000994682312" text="Tiêu đề" />
+                        <TableColumn fx:id="col_author1" prefWidth="241.74533081054688" text="Tác giả" />
+                        <TableColumn fx:id="col_publishedDate1" prefWidth="186.76364135742188" text="Ngày xuất bản" />
+                        <TableColumn fx:id="col_ID1" prefWidth="137.01806640625" text="Mã sách" />
+                        <TableColumn fx:id="col_previewLink1" minWidth="0.0" prefWidth="0.0" text="Link" />
+                     </columns>
+                  </TableView>
+                  <AnchorPane layoutX="1.0" prefHeight="285.0" prefWidth="823.0" style="-fx-background-color: lightyellow;">
+                     <children>
+                        <ImageView fx:id="addBooks_image1" fitHeight="242.0" fitWidth="200.0" layoutX="610.0" layoutY="13.963635879390512" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.799990678267335" AnchorPane.topAnchor="13.963635879390512" />
+                        <Label layoutX="22.0" layoutY="21.0" text="Tên sách :">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="22.0" layoutY="57.0" text="Tác giả :">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="22.0" layoutY="96.0" text="Ngày nhận :">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="bookNameTaken" layoutX="120.0" layoutY="21.0" prefHeight="26.0" prefWidth="557.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="authorTaken" layoutX="120.0" layoutY="58.0" prefHeight="26.0" prefWidth="379.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="dayTaken" layoutX="120.0" layoutY="98.0" prefHeight="26.0" prefWidth="370.0">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="527.0" layoutY="97.0" mnemonicParsing="false" onAction="#watchInfo" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #8a5fbf;" styleClass="white-bg" stylesheets="@styleSheet.css" text="Chi tiết" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="returnBook" layoutX="527.0" layoutY="145.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #8a5fbf;" styleClass="white-bg" stylesheets="@styleSheet.css" text="Trả sách" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="22.0" layoutY="135.0" text="Nhận xét :">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="comment" alignment="TOP_LEFT" layoutX="120.0" layoutY="136.0" prefHeight="126.0" prefWidth="403.0" style="-fx-background-color: transparent;">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </TextField>
+                        <Button layoutX="21.0" layoutY="196.0" mnemonicParsing="false" onAction="#saveComment_btn" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: #8a5fbf;" styleClass="white-bg" stylesheets="@styleSheet.css" text="Lưu" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="cmtMessage" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="-1.0" layoutY="266.0" prefHeight="19.0" prefWidth="164.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane fx:id="addBookPage" layoutX="2.0" layoutY="5.0" prefHeight="605.0" prefWidth="828.0" visible="false">
+               <children>
+                  <VBox prefHeight="603.0" prefWidth="826.0">
+                     <children>
+                        <ListView fx:id="listView" prefHeight="546.0" prefWidth="826.0" />
+                        <Label fx:id="selectedBookInfo" prefHeight="81.0" prefWidth="826.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <ListView fx:id="suggestionsListView" layoutX="357.0" layoutY="-6.0" prefHeight="211.0" prefWidth="219.0" visible="false" />
+            <AnchorPane fx:id="introPage" prefHeight="609.0" prefWidth="829.0" visible="false">
+               <children>
+                  <Label fx:id="intro6" alignment="TOP_LEFT" layoutX="24.0" layoutY="457.0" prefHeight="135.0" prefWidth="230.0" text="Về phía gia đình, dựa trên tiêu&#10;chuẩn quốc tế, thư viện của chúng&#10;tôi luôn mang đến những cuốn&#10;sách phù hợp với bất kỳ yêu cầu&#10;nào của các thành viên trong&#10;gia đình.">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="intro3" fitHeight="141.0" fitWidth="210.0" layoutX="24.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/i4.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="intro1" alignment="TOP_LEFT" layoutX="18.0" layoutY="15.0" prefHeight="31.0" prefWidth="778.0" text="Giới thiệu sản phẩm và giải pháp thư viện Sách điện tử, thư viện số trong các trường học">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="intro2" alignment="TOP_LEFT" layoutX="16.0" layoutY="47.0" prefHeight="243.0" prefWidth="805.0" text="The-IPS là giải pháp phần mềm Thư viện Sách điện tử được Hùng-Mạnh-Khải xây dựng và phát triển &#10;từ năm 2024. Với tính năng ưu việt vượt trội trong quản lý tích hợp nghiệp vụ thư viện truyền thống &#10;và thư viện Sách điện tử hiện đại, The-IPS đã được ứng dụng thành công tại một vài tổ chức, đơn vị, &#10;trường học trên toàn quốc. The-IPS được xây dựng trên nền tảng công nghệ Scene Builder và Intellij, &#10;người dùng không cần phải cài đặt, chỉ cần có mạng Internet là có thể sử dụng được hệ thống ở bất &#10;cứ nơi đâu. Đây là sản phẩm được thiết kế đáp ứng đầy đủ và tốt nhất cho nhu cầu của nhà quản lý &#10;trong việc quản lý thư viện. Các chức năng của hệ thống được thiết kế theo chuẩn thống nhất, đáp &#10;ứng đầy đủ nghiệp vụ quản lý thư viện trong các nhà trường. Đặc biệt, hệ thống thư viện cung cấp &#10;đầy đủ cả video nhằm phục vụ mục đích học tập tự do của trẻ nhỏ và người lớn.">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="intro7" alignment="TOP_LEFT" layoutX="311.0" layoutY="457.0" prefHeight="135.0" prefWidth="230.0" text="Về phía nhà trường, ban lãnh&#10;đạo có thể tự điều chỉnh và bổ&#10;sung hiệu quả nguồn tài liệu&#10;nhằm phục vụ và nâng cao chất&#10;lượng giảng dạy.">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="intro8" alignment="TOP_LEFT" layoutX="597.0" layoutY="457.0" prefHeight="135.0" prefWidth="230.0" text="Về phía thư viện, tiếp tục đẩy&#10;mạnh, đổi mới và cải thiện chất &#10;lượng sản phẩm nhằm đáp ứng&#10;nhu cầu của người đọc, đồng&#10;thời tiếp nhận ý kiến đóng góp&#10;để ngày càng hoàn thiện hơn.">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="intro5" fitHeight="141.0" fitWidth="210.0" layoutX="597.0" layoutY="303.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../Images/i6.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="intro4" fitHeight="141.0" fitWidth="210.0" layoutX="314.0" layoutY="303.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../Images/i5.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,115 @@
+.shadow{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
+}
+
+.white-bg{
+    -fx-background-radius:8px;
+}
+
+.side_ankerpane{
+    fx-background-color: #2207bb;
+    -fx-border-color:#2207bb;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+}
+
+.card-form{
+    -fx-background-color: #f8f8f8;
+    -fx-border-color:#454368;
+    -fx-border-radius:50px;
+    -fx-background-radius:50px;
+}
+
+.white-bg:pressed {
+    -fx-background-color: #3A9D40;
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0.0, 2, 2);
+    -fx-translate-y: 2px;
+}
+
+.white-bg:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(144, 238, 144, 0.5), 0, 0, 0, 3);
+    -fx-background-color: #87CEFA;
+    -fx-translate-y: 0;
+}
+
+#mainPage_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15px;
+    -fx-padding: 5 0;
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 0 0;
+    -fx-border-color: transparent;
+}
+
+#mainPage_btn.selected {
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: green; /* Màu gạch chân */
+    -fx-text-fill: green;
+}
+
+#mainPage_btn:hover {
+    -fx-text-fill: darkgreen;
+}
+
+#intro_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15px;
+    -fx-padding: 5 0;
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 0 0;
+    -fx-border-color: transparent;
+}
+
+#intro_btn.selected {
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: green; /* Màu gạch chân */
+    -fx-text-fill: green;
+}
+
+#intro_btn:hover {
+    -fx-text-fill: darkgreen;
+}
+
+#link_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15px;
+    -fx-padding: 5 0;
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 0 0;
+    -fx-border-color: transparent;
+}
+
+#link_btn.selected {
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: green; /* Màu gạch chân */
+    -fx-text-fill: green;
+}
+
+#link_btn:hover {
+    -fx-text-fill: darkgreen;
+}
+
+#documents_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15px;
+    -fx-padding: 5 0;
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 0 0;
+    -fx-border-color: transparent;
+}
+
+#documents_btn.selected {
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: green; /* Màu gạch chân */
+    -fx-text-fill: green;
+}
+
+#documents_btn:hover {
+    -fx-text-fill: darkgreen;
+}

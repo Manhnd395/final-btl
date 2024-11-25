@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="backgroundPane" prefHeight="460.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #cc7777 0.0%, #ffffff 100.0%);" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lma.librarymanagementapplication.signupController">
+   <children>
+      <TextField fx:id="signup_fullname" layoutX="131.0" layoutY="74.0" prefHeight="26.0" prefWidth="345.0" promptText="Họ và tên" stylesheets="@styleSheet.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="white-bg" />
+         </styleClass>
+      </TextField>
+      <TextField fx:id="signup_email" layoutX="131.0" layoutY="114.0" prefHeight="26.0" prefWidth="345.0" promptText="Email" stylesheets="@styleSheet.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="white-bg" />
+         </styleClass>
+      </TextField>
+      <TextField fx:id="signup_MSV" layoutX="131.0" layoutY="154.0" prefHeight="26.0" prefWidth="345.0" promptText="Mã sinh viên" stylesheets="@styleSheet.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="white-bg" />
+         </styleClass>
+      </TextField>
+      <TextField fx:id="signup_username" layoutX="131.0" layoutY="194.0" prefHeight="26.0" prefWidth="345.0" promptText="Tên đăng nhập" stylesheets="@styleSheet.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="white-bg" />
+         </styleClass>
+      </TextField>
+      <PasswordField fx:id="signup_password" layoutX="131.0" layoutY="234.0" prefHeight="26.0" prefWidth="345.0" promptText="Mật khẩu" stylesheets="@styleSheet.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="white-bg" />
+         </styleClass>
+      </PasswordField>
+      <PasswordField fx:id="signup_passwordAgain" layoutX="131.0" layoutY="274.0" prefHeight="26.0" prefWidth="345.0" promptText="Nhập lại mật khẩu" stylesheets="@styleSheet.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="white-bg" />
+         </styleClass>
+      </PasswordField>
+      <Label layoutX="131.0" layoutY="309.0" text="Ngày sinh">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
+         </effect>
+      </Label>
+      <ChoiceBox fx:id="signup_day" layoutX="131.0" layoutY="334.0" prefHeight="26.0" prefWidth="91.0" styleClass="white-bg" stylesheets="@styleSheet.css" />
+      <ChoiceBox fx:id="signup_month" layoutX="243.0" layoutY="334.0" prefHeight="26.0" prefWidth="91.0" styleClass="white-bg" stylesheets="@styleSheet.css" />
+      <ChoiceBox fx:id="signup_year" layoutX="355.0" layoutY="334.0" prefHeight="26.0" prefWidth="91.0" styleClass="white-bg" stylesheets="@styleSheet.css" />
+      <CheckBox fx:id="signup_male" layoutX="132.0" layoutY="374.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="58.0" text="Nam" />
+      <CheckBox fx:id="signup_female" layoutX="204.0" layoutY="374.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="64.0" text="Nữ" />
+      <Label fx:id="confirmGender" alignment="CENTER" contentDisplay="CENTER" layoutX="131.0" layoutY="394.0" prefHeight="19.0" prefWidth="345.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="signup_form" layoutX="262.0" layoutY="413.0" mnemonicParsing="false" onAction="#signup_form" prefHeight="26.0" prefWidth="82.0" styleClass="white-bg" stylesheets="@styleSheet.css" text="Đăng ký">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="131.0" layoutY="441.0" prefHeight="18.0" prefWidth="346.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <FontAwesomeIcon fill="#bf77e0" glyphName="CLOUD" layoutX="264.0" layoutY="63.0" size="6em" />
+   </children>
+</AnchorPane>
