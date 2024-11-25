@@ -36,6 +36,6 @@ public class AddBooksTest {
 
         assertDoesNotThrow(() -> {
             book.addBooktoDatabase();
-        }, "Ngày được thêm vào không họpleej");
+        }, "Ngày được thêm vào không hợp lệ");
     }
 }
