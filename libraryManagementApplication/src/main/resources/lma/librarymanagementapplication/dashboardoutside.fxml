@@ -531,6 +531,32 @@
                   </TextField>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="personalPage" layoutX="1.0" layoutY="4.0" prefHeight="607.0" prefWidth="827.0"
+                        style="-fx-background-color: linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%);"
+                        styleClass="background" stylesheets="@styleSheet.css">
+                  <children>
+                     <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="155.0" prefWidth="120.0" stylesheets="@styleSheet.css">
+                        <styleClass>
+                           <String fx:value="white-bg" />
+                           <String fx:value="shadow" />
+                        </styleClass>
+                        <children>
+                           <ImageView fx:id="personal_imageView" fitHeight="155.0" fitWidth="118.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                     </AnchorPane>
+                     <TableView fx:id="manageUserTable" layoutX="150.0" layoutY="200.0" prefHeight="350.0" prefWidth="650.0">
+                        <columns>
+                           <TableColumn fx:id="col_MSV" text="MSV" />
+                           <TableColumn fx:id="col_fullName" text="Full Name" />
+                           <TableColumn fx:id="col_username" text="Username" />
+                           <TableColumn fx:id="col_password" text="Password" />
+                           <TableColumn fx:id="col_email" text="Email" />
+                           <TableColumn fx:id="col_birthDate" text="Birth Date" />
+                           <TableColumn fx:id="col_gender" text="Gender" />
+                        </columns>
+                     </TableView>
+                  </children>
+            </AnchorPane>
             <AnchorPane fx:id="addBooks" layoutY="4.0" prefHeight="605.0" prefWidth="828.0" style="-fx-background-color: lightblue;" styleClass="card-form">
                <children>
                   <AnchorPane fx:id="addBooks_form" layoutX="300.0" layoutY="102.0" prefHeight="493.0" prefWidth="504.0" style="-fx-background-color: #ecba46;" stylesheets="@styleSheet.css">

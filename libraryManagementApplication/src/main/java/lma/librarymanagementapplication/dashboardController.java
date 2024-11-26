@@ -157,6 +157,10 @@ public class dashboardController implements Initializable {
             user.setVisible(true);
             signindashboard.setVisible(false);
         }
+        if (currentUser instanceof staffClass) {
+            openPersonalPage.setVisible(false);
+            openPersonalPage1.setVisible(true);
+        }
     }
 
     @FXML
@@ -201,6 +205,7 @@ public class dashboardController implements Initializable {
             mainPage.setVisible(true);
             introPage.setVisible(false);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             addBooks.setVisible(false);
             borrowedBooks.setVisible(false);
             inventory.setVisible(false);
@@ -239,6 +244,7 @@ public class dashboardController implements Initializable {
             link.setVisible(false);
             mainPage.setVisible(false);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             addBooks.setVisible(false);
             borrowedBooks.setVisible(false);
             inventory.setVisible(false);
@@ -275,6 +281,7 @@ public class dashboardController implements Initializable {
             documents.setVisible(false);
             introPage.setVisible(false);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             addBooks.setVisible(false);
             borrowedBooks.setVisible(false);
             inventory.setVisible(false);
@@ -333,6 +340,7 @@ public class dashboardController implements Initializable {
             mainPage.setVisible(true);
             introPage.setVisible(false);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             addBooks.setVisible(false);
             borrowedBooks.setVisible(false);
             inventory.setVisible(false);
@@ -356,6 +364,9 @@ public class dashboardController implements Initializable {
 
     @FXML
     private Button openPersonalPage;
+
+    @FXML
+    private Button openPersonalPage1;
 
     @FXML
     private Button openBorrowedBooks;
@@ -387,38 +398,69 @@ public class dashboardController implements Initializable {
     @FXML
     private AnchorPane addBookPage;
 
+    @FXML
+    private AnchorPane manageUserPage;
+
     /**
      * Chuyển đổi giữa các trang bên trái.
      * @param event
      */
     @FXML
     public void switchPage(ActionEvent event) {
-        if (event.getSource() == openPersonalPage) {
-            personalPage.setVisible(true);
-            mainPage.setVisible(false);
-            addBooks.setVisible(false);
-            borrowedBooks.setVisible(false);
-            inventory.setVisible(false);
-            introPage.setVisible(false);
-            addBookPage.setVisible(false);
+            if(currentUser instanceof userClass) {
+                if (currentUser instanceof staffClass) {
+                    try {
+                        showMangageUserTable();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    manageUserPage.setVisible(true);
+                    personalPage.setVisible(false);
+                    mainPage.setVisible(false);
+                    addBooks.setVisible(false);
+                    borrowedBooks.setVisible(false);
+                    inventory.setVisible(false);
+                    introPage.setVisible(false);
+                    addBookPage.setVisible(false);
 
-            personalPage.setStyle("-fx-background-color:linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%)");
-            mainPage.setStyle("-fx-background-color:transparent");
-            borrowedBooks.setStyle("-fx-background-color:transparent");
-            addBooks.setStyle("-fx-background-color:transparent");
-            inventory.setStyle("-fx-background-color:transparent");
-            introPage.setStyle("-fx-background-color:transparent");
-            addBookPage.setStyle("-fx-background-color:transparent");
+                    manageUserPage.setStyle("-fx-background-color:linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #5353af 0.0%, #d3d3ff 100.0%)");
+                    mainPage.setStyle("-fx-background-color:transparent");
+                    personalPage.setStyle("-fx-background-color:transparent");
+                    addBooks.setStyle("-fx-background-color:transparent");
+                    inventory.setStyle("-fx-background-color:transparent");
+                    introPage.setStyle("-fx-background-color:transparent");
+                    addBookPage.setStyle("-fx-background-color:transparent");
+                    borrowedBooks.setStyle("-fx-background-color:transparent");
+                } else {
+                    personalPage.setVisible(true);
+                    manageUserPage.setVisible(false);
+                    mainPage.setVisible(false);
+                    addBooks.setVisible(false);
+                    borrowedBooks.setVisible(false);
+                    inventory.setVisible(false);
+                    introPage.setVisible(false);
+                    addBookPage.setVisible(false);
 
-            mainPage_btn.getStyleClass().remove("selected");
-            link_btn.getStyleClass().remove("selected");
-            intro_btn.getStyleClass().remove("selected");
-            documents_btn.getStyleClass().remove("selected");
+                    personalPage.setStyle("-fx-background-color:linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%)");
+                    mainPage.setStyle("-fx-background-color:transparent");
+                    borrowedBooks.setStyle("-fx-background-color:transparent");
+                    addBooks.setStyle("-fx-background-color:transparent");
+                    inventory.setStyle("-fx-background-color:transparent");
+                    introPage.setStyle("-fx-background-color:transparent");
+                    addBookPage.setStyle("-fx-background-color:transparent");
+                    manageUserPage.setStyle("-fx-background-color:transparent");
+
+                    mainPage_btn.getStyleClass().remove("selected");
+                    link_btn.getStyleClass().remove("selected");
+                    intro_btn.getStyleClass().remove("selected");
+                    documents_btn.getStyleClass().remove("selected");
+                }
         }
 
         else if (event.getSource() == openBorrowedBooks) {
             borrowedBooks.setVisible(true);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             mainPage.setVisible(false);
             addBooks.setVisible(false);
             inventory.setVisible(false);
@@ -443,6 +485,7 @@ public class dashboardController implements Initializable {
             addBooks.setVisible(true);
             borrowedBooks.setVisible(false);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             mainPage.setVisible(false);
             inventory.setVisible(false);
             introPage.setVisible(false);
@@ -467,6 +510,7 @@ public class dashboardController implements Initializable {
             addBooks.setVisible(false);
             borrowedBooks.setVisible(false);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             mainPage.setVisible(false);
             introPage.setVisible(false);
             addBookPage.setVisible(false);
@@ -490,6 +534,7 @@ public class dashboardController implements Initializable {
             addBooks.setVisible(false);
             borrowedBooks.setVisible(false);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             mainPage.setVisible(false);
             introPage.setVisible(false);
             inventory.setVisible(false);
@@ -977,6 +1022,7 @@ public class dashboardController implements Initializable {
             addBooks.setVisible(false);
             borrowedBooks.setVisible(false);
             personalPage.setVisible(false);
+            manageUserPage.setVisible(false);
             mainPage.setVisible(false);
             introPage.setVisible(false);
 
@@ -1260,6 +1306,7 @@ public class dashboardController implements Initializable {
                 addBooks.setVisible(false);
                 borrowedBooks.setVisible(false);
                 personalPage.setVisible(false);
+                manageUserPage.setVisible(false);
                 mainPage.setVisible(false);
                 introPage.setVisible(false);
 
@@ -1650,6 +1697,7 @@ public class dashboardController implements Initializable {
                 link.setVisible(false);
                 introPage.setVisible(false);
                 personalPage.setVisible(false);
+                manageUserPage.setVisible(false);
                 addBooks.setVisible(false);
                 borrowedBooks.setVisible(false);
                 inventory.setVisible(false);
@@ -1819,6 +1867,7 @@ public class dashboardController implements Initializable {
                     link.setVisible(false);
                     introPage.setVisible(false);
                     personalPage.setVisible(false);
+                    manageUserPage.setVisible(false);
                     addBooks.setVisible(false);
                     borrowedBooks.setVisible(false);
                     inventory.setVisible(false);
