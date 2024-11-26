@@ -11,9 +11,9 @@ public class Database {
 
     static {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/connections");
+        config.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/library");
         config.setUsername("root");
-        config.setPassword("030205");
+        config.setPassword("Hungdzvcl2005");
         config.setMaximumPoolSize(10);
         dataSource = new HikariDataSource(config);
     }

@@ -394,7 +394,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="personalPage" layoutX="1.0" layoutY="4.0" prefHeight="607.0" prefWidth="827.0" style="-fx-background-color: linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%);" styleClass="background" stylesheets="@styleSheet.css">
+            <AnchorPane fx:id="personalPage" layoutX="1.0" layoutY="4.0" prefHeight="607.0" prefWidth="827.0" style="-fx-background-color: linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%);" styleClass="background" stylesheets="@styleSheet.css" visible="false">
                <children>
                   <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="155.0" prefWidth="120.0" stylesheets="@styleSheet.css">
                      <styleClass>
@@ -531,33 +531,32 @@
                   </TextField>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="personalPage" layoutX="1.0" layoutY="4.0" prefHeight="607.0" prefWidth="827.0"
-                        style="-fx-background-color: linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%);"
-                        styleClass="background" stylesheets="@styleSheet.css">
+            <AnchorPane fx:id="manageUserPage" layoutX="1.0" layoutY="5.0" prefHeight="566.0" prefWidth="827.0" style="-fx-background-color: linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%);" styleClass="background" stylesheets="@styleSheet.css">
                   <children>
-                     <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="155.0" prefWidth="120.0" stylesheets="@styleSheet.css">
-                        <styleClass>
-                           <String fx:value="white-bg" />
-                           <String fx:value="shadow" />
-                        </styleClass>
-                        <children>
-                           <ImageView fx:id="personal_imageView" fitHeight="155.0" fitWidth="118.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
-                        </children>
-                     </AnchorPane>
-                     <TableView fx:id="manageUserTable" layoutX="150.0" layoutY="200.0" prefHeight="350.0" prefWidth="650.0">
+                     <TableView fx:id="manageUserTable" prefHeight="605.0" prefWidth="754.0">
                         <columns>
                            <TableColumn fx:id="col_MSV" text="MSV" />
-                           <TableColumn fx:id="col_fullName" text="Full Name" />
-                           <TableColumn fx:id="col_username" text="Username" />
-                           <TableColumn fx:id="col_password" text="Password" />
-                           <TableColumn fx:id="col_email" text="Email" />
-                           <TableColumn fx:id="col_birthDate" text="Birth Date" />
-                           <TableColumn fx:id="col_gender" text="Gender" />
+                           <TableColumn fx:id="col_fullName" prefWidth="146.61821746826172" text="Họ và tên" />
+                           <TableColumn fx:id="col_username" prefWidth="104.72734069824219" text="Tên đăng nhập" />
+                           <TableColumn fx:id="col_password" prefWidth="105.5999755859375" text="Mật khẩu" />
+                           <TableColumn fx:id="col_email" prefWidth="119.56369018554688" text="Email" />
+                           <TableColumn fx:id="col_birthDate" prefWidth="106.47265625" text="Ngày sinh" />
+                           <TableColumn fx:id="col_gender" prefWidth="89.890869140625" text="Giới tính" />
                         </columns>
                      </TableView>
+                  <Button fx:id="deleteUser" layoutX="755.0" layoutY="1.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="24.0" prefWidth="72.0" style="-fx-background-color: #8a5fbf;" stylesheets="@styleSheet.css" text="Xóa" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="shadow" />
+                        <String fx:value="white-bg" />
+                        <String fx:value="button" />
+                     </styleClass>
+                  </Button>
                   </children>
             </AnchorPane>
-            <AnchorPane fx:id="addBooks" layoutY="4.0" prefHeight="605.0" prefWidth="828.0" style="-fx-background-color: lightblue;" styleClass="card-form">
+            <AnchorPane fx:id="addBooks" layoutY="4.0" prefHeight="605.0" prefWidth="828.0" style="-fx-background-color: lightblue;" styleClass="card-form" visible="false">
                <children>
                   <AnchorPane fx:id="addBooks_form" layoutX="300.0" layoutY="102.0" prefHeight="493.0" prefWidth="504.0" style="-fx-background-color: #ecba46;" stylesheets="@styleSheet.css">
                      <children>
@@ -702,21 +701,6 @@
                   <FontAwesomeIcon glyphName="SEARCH" layoutX="333.0" layoutY="78.0" />
                   <FontAwesomeIcon glyphName="SEARCH" layoutX="782.0" layoutY="35.0" />
                   <FontAwesomeIcon glyphName="SEARCH" layoutX="782.0" layoutY="79.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="1.0" layoutY="2.0" prefHeight="611.0" prefWidth="828.0">
-               <children>
-                  <TableView fx:id="manageUserTable" prefHeight="610.0" prefWidth="827.0">
-                    <columns>
-                        <TableColumn fx:id="col_MSV" prefWidth="110.66664123535156" text="Mã sinh viên" />
-                      <TableColumn fx:id="col_fullName" prefWidth="152.66668701171875" text="Họ tên" />
-                      <TableColumn fx:id="col_username" minWidth="0.0" prefWidth="125.33328247070312" text="Username" />
-                        <TableColumn fx:id="col_password" prefWidth="98.66668701171875" text="Password" />
-                        <TableColumn fx:id="col_email" prefWidth="153.33331298828125" text="Email" />
-                        <TableColumn fx:id="col_birthDate" prefWidth="109.3333740234375" text="Ngày sinh" />
-                        <TableColumn fx:id="col_gender" minWidth="0.0" prefWidth="72.66668701171875" text="Giới tính" />
-                    </columns>
-                  </TableView>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="borrowedBooks" layoutX="1.0" layoutY="3.0" prefHeight="610.0" prefWidth="823.0" visible="false">

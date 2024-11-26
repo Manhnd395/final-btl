@@ -53,7 +53,6 @@ public class signinController implements Initializable {
     /**
      * Đăng nhập thư viện.
      */
-
     public String login() throws IOException {
         String fullname = null;
 
@@ -76,7 +75,7 @@ public class signinController implements Initializable {
                 alert.setContentText("Không được để trống tên đăng nhập");
                 alert.showAndWait();
                 return null;
-            } else if (username.getText().contains(" ")|| password.getText().contains(" ")) {
+            } else if (username.getText().contains(" ") || password.getText().contains(" ")) {
                 alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Cảnh báo");
                 alert.setHeaderText(null);
@@ -85,7 +84,7 @@ public class signinController implements Initializable {
                 if (result.next()) {
                     String inputPersonname = result.getString("username");
                     boolean isStaff = false;
-                    try (BufferedReader reader = new BufferedReader(new FileReader("D:/Khai/API/libraryManagementApplication/src/main/java/lma/librarymanagementapplication/Manager.txt"))) {
+                    try (BufferedReader reader = new BufferedReader(new FileReader("C:/BTL/libraryManagementApplication/src/main/java/lma/librarymanagementapplication/Manager.txt"))) {
                         String line;
                         while ((line = reader.readLine()) != null) {
                             String[] parts = line.split(" ");
@@ -114,7 +113,7 @@ public class signinController implements Initializable {
                         alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Đăng nhập");
                         alert.setHeaderText(null);
-                        alert.setContentText("Đăng nhập thành công (Staff)");
+                        alert.setContentText("Đăng nhập thành công (Quản lý)");
                         alert.showAndWait();
 
                         login.getScene().getWindow().hide();
@@ -132,7 +131,7 @@ public class signinController implements Initializable {
                         alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Đăng nhập");
                         alert.setHeaderText(null);
-                        alert.setContentText("Đăng nhập thành công (User)");
+                        alert.setContentText("Đăng nhập thành công (Người dùng)");
                         alert.showAndWait();
 
                         login.getScene().getWindow().hide();
@@ -156,7 +155,6 @@ public class signinController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
 
-
                 } else {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Thông báo");
@@ -174,7 +172,7 @@ public class signinController implements Initializable {
     @FXML
     private Button signup;
 
-    public void signup () throws IOException {
+    public void signup() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(libraryMA.class.getResource("signup.fxml"));
 
         Parent root = fxmlLoader.load();

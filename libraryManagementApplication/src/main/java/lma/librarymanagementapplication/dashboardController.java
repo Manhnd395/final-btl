@@ -225,6 +225,7 @@ public class dashboardController implements Initializable {
         inventory.setStyle("-fx-background-color:transparent");
         introPage.setStyle("-fx-background-color:transparent");
         addBookPage.setStyle("-fx-background-color:transparent");
+        manageUserPage.setStyle("-fx-background-color:transparent");
 
     }
 
@@ -262,6 +263,7 @@ public class dashboardController implements Initializable {
         addBooks.setStyle("-fx-background-color:transparent");
         inventory.setStyle("-fx-background-color:transparent");
         addBookPage.setStyle("-fx-background-color:transparent");
+        manageUserPage.setStyle("-fx-background-color:transparent");
 
     }
 
@@ -300,6 +302,7 @@ public class dashboardController implements Initializable {
         inventory.setStyle("-fx-background-color:transparent");
         introPage.setStyle("-fx-background-color:transparent");
         addBookPage.setStyle("-fx-background-color:transparent");
+        manageUserPage.setStyle("-fx-background-color:transparent");
 
     }
 
@@ -359,6 +362,7 @@ public class dashboardController implements Initializable {
         inventory.setStyle("-fx-background-color:transparent");
         introPage.setStyle("-fx-background-color:transparent");
         addBookPage.setStyle("-fx-background-color:transparent");
+        manageUserPage.setStyle("-fx-background-color:transparent");
 
     }
 
@@ -407,54 +411,61 @@ public class dashboardController implements Initializable {
      */
     @FXML
     public void switchPage(ActionEvent event) {
+        if (event.getSource() == openPersonalPage || event.getSource() == openPersonalPage1) {
             if(currentUser instanceof userClass) {
-                if (currentUser instanceof staffClass) {
-                    try {
-                        showMangageUserTable();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                    manageUserPage.setVisible(true);
-                    personalPage.setVisible(false);
-                    mainPage.setVisible(false);
-                    addBooks.setVisible(false);
-                    borrowedBooks.setVisible(false);
-                    inventory.setVisible(false);
-                    introPage.setVisible(false);
-                    addBookPage.setVisible(false);
+                personalPage.setVisible(true);
+                manageUserPage.setVisible(false);
+                mainPage.setVisible(false);
+                addBooks.setVisible(false);
+                borrowedBooks.setVisible(false);
+                inventory.setVisible(false);
+                introPage.setVisible(false);
+                addBookPage.setVisible(false);
 
-                    manageUserPage.setStyle("-fx-background-color:linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #5353af 0.0%, #d3d3ff 100.0%)");
-                    mainPage.setStyle("-fx-background-color:transparent");
-                    personalPage.setStyle("-fx-background-color:transparent");
-                    addBooks.setStyle("-fx-background-color:transparent");
-                    inventory.setStyle("-fx-background-color:transparent");
-                    introPage.setStyle("-fx-background-color:transparent");
-                    addBookPage.setStyle("-fx-background-color:transparent");
-                    borrowedBooks.setStyle("-fx-background-color:transparent");
-                } else {
-                    personalPage.setVisible(true);
-                    manageUserPage.setVisible(false);
-                    mainPage.setVisible(false);
-                    addBooks.setVisible(false);
-                    borrowedBooks.setVisible(false);
-                    inventory.setVisible(false);
-                    introPage.setVisible(false);
-                    addBookPage.setVisible(false);
+                personalPage.setStyle("-fx-background-color:linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%)");
+                mainPage.setStyle("-fx-background-color:transparent");
+                borrowedBooks.setStyle("-fx-background-color:transparent");
+                addBooks.setStyle("-fx-background-color:transparent");
+                inventory.setStyle("-fx-background-color:transparent");
+                introPage.setStyle("-fx-background-color:transparent");
+                addBookPage.setStyle("-fx-background-color:transparent");
+                manageUserPage.setStyle("-fx-background-color:transparent");
 
-                    personalPage.setStyle("-fx-background-color:linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #af5353 0.0%, #ffd3d3 100.0%)");
-                    mainPage.setStyle("-fx-background-color:transparent");
-                    borrowedBooks.setStyle("-fx-background-color:transparent");
-                    addBooks.setStyle("-fx-background-color:transparent");
-                    inventory.setStyle("-fx-background-color:transparent");
-                    introPage.setStyle("-fx-background-color:transparent");
-                    addBookPage.setStyle("-fx-background-color:transparent");
-                    manageUserPage.setStyle("-fx-background-color:transparent");
-
-                    mainPage_btn.getStyleClass().remove("selected");
-                    link_btn.getStyleClass().remove("selected");
-                    intro_btn.getStyleClass().remove("selected");
-                    documents_btn.getStyleClass().remove("selected");
+                mainPage_btn.getStyleClass().remove("selected");
+                link_btn.getStyleClass().remove("selected");
+                intro_btn.getStyleClass().remove("selected");
+                documents_btn.getStyleClass().remove("selected");
+            } else if (currentUser instanceof staffClass) {
+                try {
+                    showMangageUserTable();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
+                manageUserPage.setVisible(true);
+                personalPage.setVisible(false);
+                mainPage.setVisible(false);
+                addBooks.setVisible(false);
+                borrowedBooks.setVisible(false);
+                inventory.setVisible(false);
+                introPage.setVisible(false);
+                addBookPage.setVisible(false);
+
+                manageUserPage.setStyle("-fx-background-color:linear-gradient(from 0.0% 24.6914% to 100.0% 100.0%, #5353af 0.0%, #d3d3ff 100.0%)");
+                mainPage.setStyle("-fx-background-color:transparent");
+                personalPage.setStyle("-fx-background-color:transparent");
+                addBooks.setStyle("-fx-background-color:transparent");
+                inventory.setStyle("-fx-background-color:transparent");
+                introPage.setStyle("-fx-background-color:transparent");
+                addBookPage.setStyle("-fx-background-color:transparent");
+                borrowedBooks.setStyle("-fx-background-color:transparent");
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Cảnh báo đăng nhập!");
+                alert.setHeaderText(null);
+                alert.setContentText("Bạn cần đăng nhập để tiếp tục!");
+                alert.showAndWait();
+            }
         }
 
         else if (event.getSource() == openBorrowedBooks) {
@@ -474,6 +485,7 @@ public class dashboardController implements Initializable {
             inventory.setStyle("-fx-background-color:transparent");
             introPage.setStyle("-fx-background-color:transparent");
             addBookPage.setStyle("-fx-background-color:transparent");
+            manageUserPage.setStyle("-fx-background-color:transparent");
 
             mainPage_btn.getStyleClass().remove("selected");
             link_btn.getStyleClass().remove("selected");
@@ -498,6 +510,7 @@ public class dashboardController implements Initializable {
             inventory.setStyle("-fx-background-color:transparent");
             introPage.setStyle("-fx-background-color:transparent");
             addBookPage.setStyle("-fx-background-color:transparent");
+            manageUserPage.setStyle("-fx-background-color:transparent");
 
             mainPage_btn.getStyleClass().remove("selected");
             link_btn.getStyleClass().remove("selected");
@@ -522,6 +535,7 @@ public class dashboardController implements Initializable {
             personalPage.setStyle("-fx-background-color:transparent");
             introPage.setStyle("-fx-background-color:transparent");
             addBookPage.setStyle("-fx-background-color:transparent");
+            manageUserPage.setStyle("-fx-background-color:transparent");
 
             mainPage_btn.getStyleClass().remove("selected");
             link_btn.getStyleClass().remove("selected");
@@ -546,6 +560,7 @@ public class dashboardController implements Initializable {
             mainPage.setStyle("-fx-background-color:transparent");
             personalPage.setStyle("-fx-background-color:transparent");
             introPage.setStyle("-fx-background-color:transparent");
+            manageUserPage.setStyle("-fx-background-color:transparent");
 
             mainPage_btn.getStyleClass().remove("selected");
             link_btn.getStyleClass().remove("selected");
@@ -747,9 +762,6 @@ public class dashboardController implements Initializable {
 
     @FXML
     private ImageView addBooks_image;
-
-    @FXML
-    private AnchorPane addBooks_form;
 
     @FXML
     private TableView<addBooksClass> addBooks_tableView;
@@ -1032,6 +1044,7 @@ public class dashboardController implements Initializable {
             mainPage.setStyle("-fx-background-color:transparent");
             personalPage.setStyle("-fx-background-color:transparent");
             introPage.setStyle("-fx-background-color:transparent");
+            manageUserPage.setStyle("-fx-background-color:transparent");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -1316,6 +1329,7 @@ public class dashboardController implements Initializable {
                 mainPage.setStyle("-fx-background-color:transparent");
                 personalPage.setStyle("-fx-background-color:transparent");
                 introPage.setStyle("-fx-background-color:transparent");
+                manageUserPage.setStyle("-fx-background-color:transparent");
             }
 
         } catch (SQLException e) {
@@ -1579,6 +1593,65 @@ public class dashboardController implements Initializable {
             col_birthDate.setCellValueFactory(new PropertyValueFactory<>("birthdate"));
             col_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (prepare != null) prepare.close();
+                if (connect != null) connect.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Xóa thành viên.
+     * @throws SQLException
+     */
+    public void deleteUser() throws SQLException {
+
+        userClass selectedUser = manageUserTable.getSelectionModel().getSelectedItem();
+        if (selectedUser == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Nhắc nhở");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng chọn một thành viên để xóa!");
+            alert.showAndWait();
+            return;
+        }
+
+        String sqlUpdate = "DELETE FROM users WHERE email = ? AND fullname = ? AND username = ? AND password = ? AND birthdate = ? AND gender = ? AND MSV = ?";
+        connect = Database.connectDB();
+
+        try {
+            prepare = connect.prepareStatement(sqlUpdate);
+            prepare.setString(1, currentUser.getEmail());
+            prepare.setString(2, currentUser.getFullname());
+            prepare.setString(3, currentUser.getUsername());
+            prepare.setString(4, currentUser.getPassword());
+            prepare.setString(5, currentUser.getBirthdate());
+            prepare.setString(6, currentUser.getGender());
+            prepare.setString(7, currentUser.getMSV());
+
+            int rowsUpdated = prepare.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Thông báo");
+                alert.setHeaderText(null);
+                alert.setContentText("Thành viên đã bị xóa thành công!");
+                alert.showAndWait();
+
+                manageUserTable.getItems().remove(selectedUser);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Nhắc nhở");
+                alert.setHeaderText(null);
+                alert.setContentText("Lỗi không thể xóa thành viên");
+                alert.showAndWait();
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -1986,6 +2059,13 @@ public class dashboardController implements Initializable {
 
         // Trang cá nhân
         initializePersonalInfo();
+
+        // Xóa nội dung của cmtMessage khi người dùng chọn sách khác
+        addBooks_tableView1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != oldValue) {
+                cmtMessage.setText("");
+            }
+        });
 
         // Hiển thị sách được thêm vào thư viện
         try {
